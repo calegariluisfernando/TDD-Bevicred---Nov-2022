@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Produto
 {
@@ -113,7 +113,7 @@ class TestaMaiorEMenor
 
         $maiorEMenor = new MaiorEMenor();
         $maiorEMenor->encontra($carrinho);
-        
+
         echo "O menor produto: ";
 
         echo $maiorEMenor->getMenor()->getNome() . PHP_EOL;
