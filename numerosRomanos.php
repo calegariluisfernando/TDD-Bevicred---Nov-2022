@@ -30,14 +30,15 @@ class TestaNumeroRomano
             return false;
         }
 
-        if ($numero >= 1000000000) {
-            echo "Não converte (valor maior que 999)" . PHP_EOL;
+        if ($numero > 3999) {
+            echo "Não converte (valor maior que 3999)" . PHP_EOL;
             return false;
         }
 
         $unidade    = $numero%10;
         $dezena     = ($numero-$unidade)%100;
         $centena    = ($numero-$dezena-$unidade)%1000;
+        $uMilhar    = ($numero-$centena-$dezena-$unidade)%10000;
 
         $strRomano = "";
         if ($unidade > 0) {
@@ -83,11 +84,19 @@ class TestaNumeroRomano
             }
         }
 
+        if ($uMilhar > 0) {
+            switch ($uMilhar) {
+                case 1000: $strRomano = "M" . $strRomano; break;
+                case 2000: $strRomano = "MM" . $strRomano; break;
+                default: $strRomano = "MMM" . $strRomano; break;
+            }
+        }
+
         echo "Numero: " . $strRomano . PHP_EOL;
         return true;
     }
 }
 
 $teste = new TestaNumeroRomano();
-$teste->realizarTeste(999);
+$teste->realizarTeste(3999);
 $teste->realizarTeste(1000000000);
